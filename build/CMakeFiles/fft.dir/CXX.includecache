@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/FFT_impl.hpp
+fftw3.h
+../include/fftw3.h
+types.h
+../include/types.h
+
+../include/fftw3.h
+stdio.h
+-
+stddef.h
+-
+
+../include/types.h
+complex
+-
+vector
+-
+fftw3.h
+../include/fftw3.h
+
+D:/Code/fft/src/main.cpp
+complex
+-
+iostream
+-
+chrono
+-
+fftw3.h
+D:/Code/fft/src/fftw3.h
+FFT_impl.hpp
+D:/Code/fft/src/FFT_impl.hpp
+random
+-
+
