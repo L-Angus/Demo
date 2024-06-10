@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/fft.dir/src/main.cpp.obj"
+  "CMakeFiles/fft.dir/src/main.cpp.obj.d"
   "fft.exe"
   "fft.exe.manifest"
   "fft.pdb"

@@ -1,9 +1,12 @@
+#ifndef DSP_TYPES_H
+#define DSP_TYPES_H
+
 #include <complex>
 #include <vector>
 
 #include "fftw3.h"
 
-template<typename T>
+template <typename T>
 using ARRAY_x = std::vector<T>;
 
 using COMPLEX = std::complex<double>;
@@ -14,71 +17,53 @@ using ARRAY_COMPLEX = ARRAY_x<COMPLEX>;
 typedef int INT;
 typedef double DOUBLE;
 
-// #include "window.h"
+enum class WindowType
+{
+    Blackman = 0, /*!< Blackman Window */
+    FlatTop,      /*!< FlatTop Window */
+    Hamming,      /*!< Hamming Window */
+    Hanning,      /*!< Hanning Window */
+    Rectangular   /*!< Rectangular Window */
+};
 
-// enum class WindowType {
-//     Blackman = 0,        /*!< Blackman Window */
-//     FlatTop,         /*!< FlatTop Window */
-//     Hamming,         /*!< Hamming Window */
-//     Hanning,         /*!< Hanning Window */
-//     Rectangular     /*!< Rectangular Window */
-// };
+struct LINERtype
+{
+    double dmax;
+    double dmin;
+    double damax;
+    double imax;
+    double imin;
+    double iamax;
 
+    int dmax_index;
+    int dmin_index;
+    int damax_index;
+    int imax_index;
+    int imin_index;
+    int iamax_index;
+};
 
-//     namespace internal {
+enum class ILEType
+{
+    END_PT_LSB,
+    END_PT,
+    ZERO_PT_LSB,
+    ZERO_PT,
+    MIN_RMS_LSB,
+    MIN_RMS
+};
 
-//         template <WindowType Type>
-//         struct _build_window {};
+enum class LSBUsage
+{
+    LSB,
+    NO_LSB
+};
 
-//         template <>
-//         struct _build_window<WindowType::Blackman> {
-//             template <typename OutputIt>
-//             constexpr void operator()(OutputIt first, OutputIt last) {
-//                 blackman(first, last);
-//             }
-//         };
+enum class ILEMethod
+{
+    END_PT_ILE,
+    ZERO_PT_ILE,
+    MIN_RMS_ILE
+};
 
-//         template <>
-//         struct _build_window<WindowType::FlatTop> {
-//             template <typename OutputIt>
-//             constexpr void operator()(OutputIt first, OutputIt last) {
-//                 flattop(first, last);
-//             }
-//         };
-
-//         template <>
-//         struct _build_window<WindowType::Hamming> {
-//             template <typename OutputIt>
-//             constexpr void operator()(OutputIt first, OutputIt last) {
-//                 hamming(first, last);
-//             }
-//         };
-
-//         template <>
-//         struct _build_window<WindowType::Hanning> {
-//             template <typename OutputIt>
-//             constexpr void operator()(OutputIt first, OutputIt last) {
-//                 hanning(first, last);
-//             }
-//         };
-
-//         template <>
-//         struct _build_window<WindowType::Rectangular> {
-//             template <typename OutputIt>
-//             constexpr void operator()(OutputIt first, OutputIt last) {
-//                 rectangular(first, last);
-//             }
-//         };
-//     }; // namespace internal
-
-//     /**
-//      * @brief Computes a window of the given type and length N and stores the result in the range, beginning at d_first.
-//      * @tparam Type Type of window to be computed
-//      * @param first Input iterator defining the beginning of the output range.
-//      * @param last Input iterator defining the ending of the output range.
-//      */
-//     template <WindowType Type, typename OutputIt>
-//     constexpr void make_window(OutputIt first, OutputIt last) {
-//         return internal::_build_window<Type>{}(first, last);
-//     }
-
+#endif // DSP_TYPES_H
